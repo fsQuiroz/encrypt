@@ -1,7 +1,9 @@
 import './App.css';
+import { FunctionComponent } from 'react';
+import Home from './pages/home/Home';
 
-function App() {
-  return <></>;
-}
+const App: FunctionComponent = () => {
+  return <Home />;
+};
 
 export default App;
