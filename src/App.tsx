@@ -1,9 +1,9 @@
 import './App.css';
 import { FunctionComponent } from 'react';
-import Home from './pages/home/Home';
+import GridHome from './pages/home/GridHome.tsx';
 
 const App: FunctionComponent = () => {
-  return <Home />;
+  return <GridHome />;
 };
 
 export default App;
