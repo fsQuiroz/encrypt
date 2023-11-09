@@ -21,6 +21,7 @@ const GridHome: FunctionComponent = () => {
             helperText="Ingresa el texto que deseas encriptar/desencriptar"
             multiline
             minRows={10}
+            maxRows={10}
             fullWidth
           />
         </Grid>
