@@ -1,4 +1,3 @@
-import React from 'react';
 import { FunctionComponent } from 'react';
 import CopyAllTwoToneIcon from '@mui/icons-material/CopyAllTwoTone';
 import { Button } from '@mui/material';

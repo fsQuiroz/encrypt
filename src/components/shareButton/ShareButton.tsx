@@ -1,4 +1,3 @@
-import React from 'react';
 import { FunctionComponent } from 'react';
 import ShareTwoToneIcon from '@mui/icons-material/ShareTwoTone';
 import { Button } from '@mui/material';
