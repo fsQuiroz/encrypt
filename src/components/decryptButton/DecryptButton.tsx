@@ -4,10 +4,7 @@ import { Button } from '@mui/material';
 
 const DecryptButton: FunctionComponent = () => {
   return (
-    <Button
-      variant="contained"
-      startIcon={<KeyOffTwoToneIcon />}
-      sx={{ marginTop: '2rem', marginLeft: '1rem', alignSelf: 'center' }}>
+    <Button variant="contained" startIcon={<KeyOffTwoToneIcon />} sx={{ marginTop: '2rem', marginLeft: '1rem' }}>
       Desencriptar
     </Button>
   );
