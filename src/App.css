@@ -3,10 +3,8 @@
   padding: 0;
 }
 body {
-  background: linear-gradient(to right, #000000, #434343);
+  background-image: url('../src/common/fondo.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
   color: antiquewhite;
-}
-#textEncrypt,
-#text {
-  color: white;
 }
