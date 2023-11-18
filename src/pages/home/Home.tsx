@@ -36,9 +36,6 @@ const GridHome: FunctionComponent = () => {
                 '& fieldset': {
                   borderColor: 'white',
                 },
-                '&:hover fieldset': {
-                  borderColor: 'white',
-                },
               },
               '& .MuiFormHelperText-root': {
                 color: 'white',
@@ -64,9 +61,6 @@ const GridHome: FunctionComponent = () => {
             sx={{
               '& .MuiOutlinedInput-root': {
                 '& fieldset': {
-                  borderColor: 'white',
-                },
-                '&:hover fieldset': {
                   borderColor: 'white',
                 },
               },
