@@ -7,7 +7,7 @@ import ShareButton from '../../components/shareButton/ShareButton.tsx';
 
 const GridHome: FunctionComponent = () => {
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" sx={{ mt: 4, mb: 4 }}>
       <Grid container direction="column" justifyContent="flex-start" alignItems="stretch" spacing={2}>
         <Grid item md={12}>
           <Typography variant="h3" align="center">
