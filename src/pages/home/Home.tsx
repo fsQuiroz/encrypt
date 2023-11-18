@@ -6,19 +6,23 @@ import CopyButton from '../../components/copyButton/CopyButton.tsx';
 import ShareButton from '../../components/shareButton/ShareButton.tsx';
 
 const GridHome: FunctionComponent = () => {
+  // TODO: Fix responsive
   return (
-    <Container maxWidth="sm" sx={{ mt: 4, mb: 4 }}>
+    <Container maxWidth="sm" sx={{ my: 4 }}>
       <Grid container direction="column" justifyContent="flex-start" alignItems="stretch" spacing={2}>
         <Grid item md={12}>
           <Typography variant="h3" align="center">
-            Encrypt
+            Secure Notes
+          </Typography>
+          <Typography variant="subtitle1" align="center">
+            by fsQuiroz.com
           </Typography>
         </Grid>
         <Grid item md={12}>
           <TextField
             label="Text"
             variant="outlined"
-            helperText="Ingresa el texto que deseas encriptar/desencriptar"
+            helperText="Text to encrypt or decrypt"
             multiline
             minRows={10}
             maxRows={10}
@@ -48,9 +52,9 @@ const GridHome: FunctionComponent = () => {
         </Grid>
         <Grid item md={12}>
           <TextField
-            label="Contraseña"
+            label="Key"
             variant="outlined"
-            helperText="Aquí debes poner tu contraseña para encriptar/desencriptar"
+            helperText="Encryption key to encrypt or decrypt text"
             type="password"
             fullWidth
             InputProps={{
