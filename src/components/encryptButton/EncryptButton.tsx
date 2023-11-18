@@ -4,8 +4,8 @@ import { Button } from '@mui/material';
 
 const EncryptButton: FunctionComponent = () => {
   return (
-    <Button variant="contained" startIcon={<KeyIcon />} sx={{ mt: 2 }}>
-      Encriptar
+    <Button variant="contained" startIcon={<KeyIcon />}>
+      Encrypt
     </Button>
   );
 };

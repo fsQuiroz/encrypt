@@ -4,8 +4,8 @@ import { Button } from '@mui/material';
 
 const ShareButton: FunctionComponent = () => {
   return (
-    <Button variant="contained" startIcon={<ShareTwoToneIcon />} sx={{ ml: 2 }}>
-      Compartir
+    <Button variant="contained" startIcon={<ShareTwoToneIcon />}>
+      Share
     </Button>
   );
 };

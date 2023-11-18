@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { Container, Grid, TextField, Typography } from '@mui/material';
+import { Container, Grid, Stack, TextField, Typography } from '@mui/material';
 import EncryptButton from '../../components/encryptButton/EncryptButton.tsx';
 import DecryptButton from '../../components/decryptButton/DecryptButton.tsx';
 import CopyButton from '../../components/copyButton/CopyButton.tsx';
@@ -76,13 +76,13 @@ const GridHome: FunctionComponent = () => {
             }}
           />
         </Grid>
-        <Grid item md={12} m="auto">
-          <EncryptButton />
-          <DecryptButton />
-        </Grid>
-        <Grid item md={12} m="auto">
-          <CopyButton />
-          <ShareButton />
+        <Grid item md={12} sx={{ mt: 2 }}>
+          <Stack direction="row" spacing={2} justifyContent="center">
+            <EncryptButton />
+            <DecryptButton />
+            <CopyButton />
+            <ShareButton />
+          </Stack>
         </Grid>
       </Grid>
     </Container>
