@@ -6,11 +6,10 @@ import CopyButton from '../../components/copyButton/CopyButton.tsx';
 import ShareButton from '../../components/shareButton/ShareButton.tsx';
 
 const GridHome: FunctionComponent = () => {
-  // TODO: Fix responsive
   return (
     <Container maxWidth="sm" sx={{ my: 4 }}>
-      <Grid container direction="column" justifyContent="flex-start" alignItems="stretch" spacing={2}>
-        <Grid item md={12}>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
           <Typography variant="h3" align="center">
             Secure Notes
           </Typography>
@@ -18,7 +17,7 @@ const GridHome: FunctionComponent = () => {
             by fsQuiroz.com
           </Typography>
         </Grid>
-        <Grid item md={12}>
+        <Grid item xs={12}>
           <TextField
             label="Text"
             variant="outlined"
@@ -50,7 +49,7 @@ const GridHome: FunctionComponent = () => {
             }}
           />
         </Grid>
-        <Grid item md={12}>
+        <Grid item xs={12} sx={{ mb: 2 }}>
           <TextField
             label="Key"
             variant="outlined"
@@ -80,11 +79,23 @@ const GridHome: FunctionComponent = () => {
             }}
           />
         </Grid>
-        <Grid item md={12} sx={{ mt: 2 }}>
-          <Stack direction="row" spacing={2} justifyContent="center">
+        <Grid item xs={6}>
+          <Stack direction="row" justifyContent="end">
             <EncryptButton />
+          </Stack>
+        </Grid>
+        <Grid item xs={6}>
+          <Stack direction="row" justifyContent="start">
             <DecryptButton />
+          </Stack>
+        </Grid>
+        <Grid item xs={6}>
+          <Stack direction="row" justifyContent="end">
             <CopyButton />
+          </Stack>
+        </Grid>
+        <Grid item xs={6}>
+          <Stack direction="row" justifyContent="start">
             <ShareButton />
           </Stack>
         </Grid>
