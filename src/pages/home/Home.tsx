@@ -16,11 +16,11 @@ interface Props extends HTMLAttributes<unknown> {
   alertMessage: string | null;
   formRef: MutableRefObject<HTMLFormElement | null>;
   formik: FormikProps<EncryptForm>;
-  encrypt: () => void;
-  decrypt: () => void;
-  copy: () => void;
-  share: () => void;
-  closeAlert: (event?: SyntheticEvent | Event, reason?: string) => void;
+  handleEncrypt: () => void;
+  handleDecrypt: () => void;
+  handleCopy: () => void;
+  handleShare: () => void;
+  handleCloseAlert: (event?: SyntheticEvent | Event, reason?: string) => void;
 }
 
 const Home: FunctionComponent<Props> = ({
@@ -31,21 +31,21 @@ const Home: FunctionComponent<Props> = ({
   alertMessage,
   formRef,
   formik,
-  encrypt,
-  decrypt,
-  copy,
-  share,
-  closeAlert,
+  handleEncrypt,
+  handleDecrypt,
+  handleCopy,
+  handleShare,
+  handleCloseAlert,
 }) => {
   return (
     <Container maxWidth="sm" sx={{ my: 4 }}>
       <Snackbar
         open={!!alertMessage}
-        onClose={closeAlert}
+        onClose={handleCloseAlert}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         autoHideDuration={5000}>
         <Alert
-          onClose={closeAlert}
+          onClose={handleCloseAlert}
           severity="success"
           variant="filled"
           sx={{ width: '100%' }}
@@ -138,22 +138,22 @@ const Home: FunctionComponent<Props> = ({
         </Grid>
         <Grid item xs={6}>
           <Stack direction="row" justifyContent="end">
-            <EncryptButton disabled={!formik.isValid} onClick={encrypt} />
+            <EncryptButton disabled={!formik.isValid} onClick={handleEncrypt} />
           </Stack>
         </Grid>
         <Grid item xs={6}>
           <Stack direction="row" justifyContent="start">
-            <DecryptButton disabled={!formik.isValid} onClick={decrypt} />
+            <DecryptButton disabled={!formik.isValid} onClick={handleDecrypt} />
           </Stack>
         </Grid>
         <Grid item xs={6}>
           <Stack direction="row" justifyContent="end">
-            <CopyButton onClick={copy} copied={copied} disabled={!formik.values.note} />
+            <CopyButton onClick={handleCopy} copied={copied} disabled={!formik.values.note} />
           </Stack>
         </Grid>
         <Grid item xs={6}>
           <Stack direction="row" justifyContent="start">
-            <ShareButton onClick={share} shared={shared} disabled={!encrypted} />
+            <ShareButton onClick={handleShare} shared={shared} disabled={!encrypted} />
           </Stack>
         </Grid>
       </Grid>

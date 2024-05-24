@@ -87,31 +87,31 @@ const HomeContainer: FunctionComponent = () => {
     setEncrypted(false);
   };
 
-  const encrypt = () => {
+  const handleEncrypt = () => {
     formik.setFieldValue('type', 'ENCRYPT');
     formRef.current?.dispatchEvent(new Event('submit', { cancelable: false, bubbles: true }));
   };
 
-  const decrypt = () => {
+  const handleDecrypt = () => {
     formik.setFieldValue('type', 'DECRYPT');
     formRef.current?.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
   };
 
-  const copy = () => {
+  const handleCopy = () => {
     const note = formik.values.note;
     CopyService.copy(note);
     setCopied(true);
     setAlertMessage(alertCopiedMessage);
   };
 
-  const share = () => {
+  const handleShare = () => {
     const encrypted = formik.values.note;
     CopyService.share(encrypted);
     setShared(true);
     setAlertMessage(alertSharedMessage);
   };
 
-  const closeAlert = (_event?: SyntheticEvent | Event, reason?: string) => {
+  const handleCloseAlert = (_event?: SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -127,11 +127,11 @@ const HomeContainer: FunctionComponent = () => {
       alertMessage={alertMessage}
       formRef={formRef}
       formik={formik}
-      encrypt={encrypt}
-      decrypt={decrypt}
-      copy={copy}
-      share={share}
-      closeAlert={closeAlert}
+      handleEncrypt={handleEncrypt}
+      handleDecrypt={handleDecrypt}
+      handleCopy={handleCopy}
+      handleShare={handleShare}
+      handleCloseAlert={handleCloseAlert}
     />
   );
 };
