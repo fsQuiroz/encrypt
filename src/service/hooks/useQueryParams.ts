@@ -3,9 +3,9 @@ import { useLocation } from 'react-router-dom';
 export const useQueryParams = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  let params: { [key in string]: string } = {};
+  const params: { [key in string]: string } = {};
 
-  for (let param of searchParams) {
+  for (const param of searchParams) {
     params[param[0]] = param[1];
   }
 
