@@ -18,6 +18,7 @@ const HomeContainer: FunctionComponent = () => {
   const [shared, setShared] = useState(false);
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
+  const passRef = useRef<HTMLInputElement | null>(null);
   const params = useQueryParams();
 
   useEffect(() => {
@@ -49,6 +50,9 @@ const HomeContainer: FunctionComponent = () => {
 
   const getInitialValues = (): EncryptForm => {
     const encrypted = params[queryParam];
+    if (encrypted) {
+      setTimeout(() => passRef.current?.focus(), 1000);
+    }
     return {
       note: encrypted ? encrypted : '',
       pass: '',
@@ -126,6 +130,7 @@ const HomeContainer: FunctionComponent = () => {
       shared={shared}
       alertMessage={alertMessage}
       formRef={formRef}
+      passRef={passRef}
       formik={formik}
       handleEncrypt={handleEncrypt}
       handleDecrypt={handleDecrypt}

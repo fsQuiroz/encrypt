@@ -15,6 +15,7 @@ interface Props extends HTMLAttributes<unknown> {
   shared: boolean;
   alertMessage: string | null;
   formRef: MutableRefObject<HTMLFormElement | null>;
+  passRef: MutableRefObject<HTMLInputElement | null>;
   formik: FormikProps<EncryptForm>;
   handleEncrypt: () => void;
   handleDecrypt: () => void;
@@ -30,6 +31,7 @@ const Home: FunctionComponent<Props> = ({
   shared,
   alertMessage,
   formRef,
+  passRef,
   formik,
   handleEncrypt,
   handleDecrypt,
@@ -115,6 +117,7 @@ const Home: FunctionComponent<Props> = ({
             value={formik.values.pass}
             onChange={formik.handleChange}
             error={(formik.touched.pass && Boolean(formik.errors.pass)) || encStatus === 'INVALID_PASS'}
+            inputRef={passRef}
             fullWidth
             InputProps={{
               style: {
