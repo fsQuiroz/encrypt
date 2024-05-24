@@ -138,12 +138,12 @@ const Home: FunctionComponent<Props> = ({
         </Grid>
         <Grid item xs={6}>
           <Stack direction="row" justifyContent="end">
-            <EncryptButton disabled={!formik.isValid} onClick={handleEncrypt} />
+            <EncryptButton disabled={!formik.isValid || !formik.dirty} onClick={handleEncrypt} />
           </Stack>
         </Grid>
         <Grid item xs={6}>
           <Stack direction="row" justifyContent="start">
-            <DecryptButton disabled={!formik.isValid} onClick={handleDecrypt} />
+            <DecryptButton disabled={!formik.isValid || !formik.dirty} onClick={handleDecrypt} />
           </Stack>
         </Grid>
         <Grid item xs={6}>
@@ -153,7 +153,7 @@ const Home: FunctionComponent<Props> = ({
         </Grid>
         <Grid item xs={6}>
           <Stack direction="row" justifyContent="start">
-            <ShareButton onClick={handleShare} shared={shared} disabled={!encrypted} />
+            <ShareButton onClick={handleShare} shared={shared} disabled={!encrypted || !formik.values.note} />
           </Stack>
         </Grid>
       </Grid>
