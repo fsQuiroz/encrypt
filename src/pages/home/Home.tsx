@@ -1,25 +1,58 @@
-import { FunctionComponent, HTMLAttributes, MutableRefObject } from 'react';
-import { Container, Grid, Stack, TextField, Typography } from '@mui/material';
+import { FunctionComponent, HTMLAttributes, MutableRefObject, SyntheticEvent } from 'react';
+import { Alert, Container, Grid, Snackbar, Stack, TextField, Typography } from '@mui/material';
 import EncryptButton from '../../components/encryptButton/EncryptButton.tsx';
 import DecryptButton from '../../components/decryptButton/DecryptButton.tsx';
 import CopyButton from '../../components/copyButton/CopyButton.tsx';
 import ShareButton from '../../components/shareButton/ShareButton.tsx';
 import { FormikProps } from 'formik';
 import { EncryptForm } from '../../model/form/EncryptForm.ts';
+import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
 
 interface Props extends HTMLAttributes<unknown> {
   encStatus: 'CLEAN' | 'INVALID_NOTE' | 'INVALID_PASS' | 'SUCCESS';
+  encrypted: boolean;
   copied: boolean;
+  shared: boolean;
+  alertMessage: string | null;
   formRef: MutableRefObject<HTMLFormElement | null>;
   formik: FormikProps<EncryptForm>;
   encrypt: () => void;
   decrypt: () => void;
   copy: () => void;
+  share: () => void;
+  closeAlert: (event?: SyntheticEvent | Event, reason?: string) => void;
 }
 
-const Home: FunctionComponent<Props> = ({ encStatus, copied, formRef, formik, encrypt, decrypt, copy }) => {
+const Home: FunctionComponent<Props> = ({
+  encStatus,
+  encrypted,
+  copied,
+  shared,
+  alertMessage,
+  formRef,
+  formik,
+  encrypt,
+  decrypt,
+  copy,
+  share,
+  closeAlert,
+}) => {
   return (
     <Container maxWidth="sm" sx={{ my: 4 }}>
+      <Snackbar
+        open={!!alertMessage}
+        onClose={closeAlert}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        autoHideDuration={5000}>
+        <Alert
+          onClose={closeAlert}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+          icon={<CheckCircleTwoToneIcon />}>
+          {alertMessage}
+        </Alert>
+      </Snackbar>
       <Grid component="form" onSubmit={formik.handleSubmit} container spacing={2} ref={formRef}>
         <Grid item xs={12}>
           <Typography variant="h3" align="center">
@@ -120,7 +153,7 @@ const Home: FunctionComponent<Props> = ({ encStatus, copied, formRef, formik, en
         </Grid>
         <Grid item xs={6}>
           <Stack direction="row" justifyContent="start">
-            <ShareButton />
+            <ShareButton onClick={share} shared={shared} disabled={!encrypted} />
           </Stack>
         </Grid>
       </Grid>

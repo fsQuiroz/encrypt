@@ -1,10 +1,22 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 import ShareTwoToneIcon from '@mui/icons-material/ShareTwoTone';
+import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
 import { Button } from '@mui/material';
 
-const ShareButton: FunctionComponent = () => {
+interface Props extends HTMLAttributes<unknown> {
+  disabled?: boolean;
+  shared?: boolean;
+  onClick?: () => void;
+}
+
+const ShareButton: FunctionComponent<Props> = ({ shared, onClick, disabled }) => {
   return (
-    <Button variant="contained" startIcon={<ShareTwoToneIcon />}>
+    <Button
+      variant="contained"
+      startIcon={shared ? <CheckCircleTwoToneIcon /> : <ShareTwoToneIcon />}
+      onClick={onClick}
+      disabled={disabled}
+      color={shared ? 'success' : 'primary'}>
       Share
     </Button>
   );
