@@ -29,12 +29,13 @@ function updateVersion() {
 }
 
 function buildAndDeploy() {
-  rm app.zip
+  rm -rf app.zip
+  rm -rf dist
   yarn build
 
   zip -r app.zip dist
   scp app.zip fsquiroz:~/sn.zip
-  rm app.zip
+  rm -rf app.zip
   rm -rf dist
 
   ssh fsquiroz bash /home/frani/deploy-sn
@@ -56,7 +57,7 @@ checkUncommittedChanges
 checkBranchIsMain
 
 updateVersion "$NEW_VER"
+buildAndDeploy
+
 commitChanges "$NEW_VER"
 pushChanges "$NEW_VER"
-
-buildAndDeploy
