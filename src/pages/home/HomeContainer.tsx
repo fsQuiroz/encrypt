@@ -13,6 +13,7 @@ const initialValues: EncryptForm = {
 
 const HomeContainer: FunctionComponent = () => {
   const [encStatus, setEncStatus] = useState<'CLEAN' | 'INVALID_NOTE' | 'INVALID_PASS' | 'SUCCESS'>('CLEAN');
+  const [copied, setCopied] = useState(false);
   const formRef = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
@@ -20,6 +21,12 @@ const HomeContainer: FunctionComponent = () => {
       setTimeout(() => setEncStatus('CLEAN'), 500);
     }
   }, [encStatus]);
+
+  useEffect(() => {
+    if (copied) {
+      setTimeout(() => setCopied(false), 500);
+    }
+  }, [copied]);
 
   const validations = yup.object({
     note: yup.string().required(),
@@ -68,7 +75,27 @@ const HomeContainer: FunctionComponent = () => {
     formRef.current?.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
   };
 
-  return <Home encStatus={encStatus} formRef={formRef} formik={formik} encrypt={encrypt} decrypt={decrypt} />;
+  const copy = () => {
+    const note = formik.values.note;
+    if ('clipboard' in navigator) {
+      navigator.clipboard.writeText(note);
+    } else {
+      document.execCommand('copy', true, note);
+    }
+    setCopied(true);
+  };
+
+  return (
+    <Home
+      encStatus={encStatus}
+      copied={copied}
+      formRef={formRef}
+      formik={formik}
+      encrypt={encrypt}
+      decrypt={decrypt}
+      copy={copy}
+    />
+  );
 };
 
 export default HomeContainer;

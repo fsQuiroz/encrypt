@@ -9,13 +9,15 @@ import { EncryptForm } from '../../model/form/EncryptForm.ts';
 
 interface Props extends HTMLAttributes<unknown> {
   encStatus: 'CLEAN' | 'INVALID_NOTE' | 'INVALID_PASS' | 'SUCCESS';
+  copied: boolean;
   formRef: MutableRefObject<HTMLFormElement | null>;
   formik: FormikProps<EncryptForm>;
   encrypt: () => void;
   decrypt: () => void;
+  copy: () => void;
 }
 
-const Home: FunctionComponent<Props> = ({ encStatus, formRef, formik, encrypt, decrypt }) => {
+const Home: FunctionComponent<Props> = ({ encStatus, copied, formRef, formik, encrypt, decrypt, copy }) => {
   return (
     <Container maxWidth="sm" sx={{ my: 4 }}>
       <Grid component="form" onSubmit={formik.handleSubmit} container spacing={2} ref={formRef}>
@@ -103,17 +105,17 @@ const Home: FunctionComponent<Props> = ({ encStatus, formRef, formik, encrypt, d
         </Grid>
         <Grid item xs={6}>
           <Stack direction="row" justifyContent="end">
-            <EncryptButton onClick={encrypt} />
+            <EncryptButton disabled={!formik.isValid} onClick={encrypt} />
           </Stack>
         </Grid>
         <Grid item xs={6}>
           <Stack direction="row" justifyContent="start">
-            <DecryptButton onClick={decrypt} />
+            <DecryptButton disabled={!formik.isValid} onClick={decrypt} />
           </Stack>
         </Grid>
         <Grid item xs={6}>
           <Stack direction="row" justifyContent="end">
-            <CopyButton />
+            <CopyButton onClick={copy} copied={copied} disabled={!formik.values.note} />
           </Stack>
         </Grid>
         <Grid item xs={6}>
