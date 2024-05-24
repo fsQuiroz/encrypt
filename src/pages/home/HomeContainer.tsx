@@ -7,19 +7,20 @@ import * as EncryptionService from '../../service/encryption.service.ts';
 import * as CopyService from '../../service/copy.service';
 import { useQueryParams } from '../../service/hooks/useQueryParams.ts';
 
-const queryParam = import.meta.env.VITE_ENCRYPTED_QUERY_PARAM;
+const encriptedQueryParam = import.meta.env.VITE_ENCRYPTED_QUERY_PARAM;
+const encryptedQueryParam = import.meta.env.VITE_ENCRYPTED_QUERY_PARAM;
 const alertCopiedMessage: string = 'Text copied to clipboard';
 const alertSharedMessage: string = 'Share link generated and copied to clipboard';
 
 const HomeContainer: FunctionComponent = () => {
+  const params = useQueryParams();
   const [encStatus, setEncStatus] = useState<'CLEAN' | 'INVALID_NOTE' | 'INVALID_PASS' | 'SUCCESS'>('CLEAN');
   const [encrypted, setEncrypted] = useState(false);
   const [copied, setCopied] = useState(false);
   const [shared, setShared] = useState(false);
+  const [encryptedQueryParamPresent] = useState<boolean>(!!params[encryptedQueryParam]);
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
-  const passRef = useRef<HTMLInputElement | null>(null);
-  const params = useQueryParams();
 
   useEffect(() => {
     if (encStatus === 'SUCCESS') {
@@ -49,10 +50,7 @@ const HomeContainer: FunctionComponent = () => {
   });
 
   const getInitialValues = (): EncryptForm => {
-    const encrypted = params[queryParam];
-    if (encrypted) {
-      setTimeout(() => passRef.current?.focus(), 1000);
-    }
+    const encrypted = params[encryptedQueryParam];
     return {
       note: encrypted ? encrypted : '',
       pass: '',
@@ -128,9 +126,9 @@ const HomeContainer: FunctionComponent = () => {
       encrypted={encrypted}
       copied={copied}
       shared={shared}
+      encryptedQueryParamPresent={encryptedQueryParamPresent}
       alertMessage={alertMessage}
       formRef={formRef}
-      passRef={passRef}
       formik={formik}
       handleEncrypt={handleEncrypt}
       handleDecrypt={handleDecrypt}

@@ -13,9 +13,9 @@ interface Props extends HTMLAttributes<unknown> {
   encrypted: boolean;
   copied: boolean;
   shared: boolean;
+  encryptedQueryParamPresent: boolean;
   alertMessage: string | null;
   formRef: MutableRefObject<HTMLFormElement | null>;
-  passRef: MutableRefObject<HTMLInputElement | null>;
   formik: FormikProps<EncryptForm>;
   handleEncrypt: () => void;
   handleDecrypt: () => void;
@@ -29,9 +29,9 @@ const Home: FunctionComponent<Props> = ({
   encrypted,
   copied,
   shared,
+  encryptedQueryParamPresent,
   alertMessage,
   formRef,
-  passRef,
   formik,
   handleEncrypt,
   handleDecrypt,
@@ -76,6 +76,7 @@ const Home: FunctionComponent<Props> = ({
             onChange={formik.handleChange}
             error={(formik.touched.note && Boolean(formik.errors.note)) || encStatus === 'INVALID_NOTE'}
             color={encStatus === 'SUCCESS' ? 'success' : 'primary'}
+            autoFocus={!encryptedQueryParamPresent}
             multiline
             minRows={10}
             maxRows={10}
@@ -117,7 +118,7 @@ const Home: FunctionComponent<Props> = ({
             value={formik.values.pass}
             onChange={formik.handleChange}
             error={(formik.touched.pass && Boolean(formik.errors.pass)) || encStatus === 'INVALID_PASS'}
-            inputRef={passRef}
+            autoFocus={encryptedQueryParamPresent}
             fullWidth
             InputProps={{
               style: {
