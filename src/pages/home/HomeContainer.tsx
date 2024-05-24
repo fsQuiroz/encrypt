@@ -7,7 +7,7 @@ import * as EncryptionService from '../../service/encryption.service.ts';
 import * as CopyService from '../../service/copy.service';
 import { useQueryParams } from '../../service/hooks/useQueryParams.ts';
 
-const encriptedQueryParam = import.meta.env.VITE_ENCRYPTED_QUERY_PARAM;
+const appVersion = import.meta.env.VITE_APP_VERSION;
 const encryptedQueryParam = import.meta.env.VITE_ENCRYPTED_QUERY_PARAM;
 const alertCopiedMessage: string = 'Text copied to clipboard';
 const alertSharedMessage: string = 'Share link generated and copied to clipboard';
@@ -122,6 +122,7 @@ const HomeContainer: FunctionComponent = () => {
 
   return (
     <Home
+      appVersion={appVersion}
       encStatus={encStatus}
       encrypted={encrypted}
       copied={copied}

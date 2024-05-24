@@ -9,6 +9,7 @@ import { EncryptForm } from '../../model/form/EncryptForm.ts';
 import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
 
 interface Props extends HTMLAttributes<unknown> {
+  appVersion: string;
   encStatus: 'CLEAN' | 'INVALID_NOTE' | 'INVALID_PASS' | 'SUCCESS';
   encrypted: boolean;
   copied: boolean;
@@ -25,6 +26,7 @@ interface Props extends HTMLAttributes<unknown> {
 }
 
 const Home: FunctionComponent<Props> = ({
+  appVersion,
   encStatus,
   encrypted,
   copied,
@@ -61,7 +63,7 @@ const Home: FunctionComponent<Props> = ({
             Secure Notes
           </Typography>
           <Typography variant="subtitle1" align="center">
-            by fsQuiroz.com
+            by fsQuiroz.com | v{appVersion}
           </Typography>
         </Grid>
         <Grid item xs={12}>
