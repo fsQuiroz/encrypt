@@ -1,10 +1,14 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, HTMLAttributes } from 'react';
 import KeyOffIcon from '@mui/icons-material/KeyOff';
 import { Button } from '@mui/material';
 
-const DecryptButton: FunctionComponent = () => {
+interface Props extends HTMLAttributes<unknown> {
+  onClick?: () => void;
+}
+
+const DecryptButton: FunctionComponent<Props> = ({ onClick }) => {
   return (
-    <Button variant="contained" startIcon={<KeyOffIcon />}>
+    <Button variant="contained" startIcon={<KeyOffIcon />} onClick={onClick}>
       Decrypt
     </Button>
   );

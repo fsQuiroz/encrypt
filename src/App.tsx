@@ -1,9 +1,9 @@
 import './App.css';
 import { FunctionComponent } from 'react';
-import Home from './pages/home/Home.tsx';
+import HomeContainer from './pages/home/HomeContainer.tsx';
 
 const App: FunctionComponent = () => {
-  return <Home />;
+  return <HomeContainer />;
 };
 
 export default App;
