@@ -2,6 +2,10 @@ set -e
 
 NEW_VER="$1"
 
+function doLint() {
+  yarn lint
+}
+
 function checkUncommittedChanges() {
   if ! git diff-index --quiet HEAD --; then
     echo 'There are uncommitted changes'
@@ -21,7 +25,7 @@ function checkBranchIsMain() {
 
 function updateVersion() {
   node fsq/update.version.js --new-version="$1"
-  yarn version --new-version "$1" --no-git-tag-version --no-commit-hooks
+  yarn version $1
 }
 
 function buildAndDeploy() {
@@ -47,6 +51,7 @@ function pushChanges() {
   git push origin "$1"
 }
 
+doLint
 checkUncommittedChanges
 checkBranchIsMain
 
