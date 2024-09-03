@@ -117,6 +117,7 @@ const Home: FunctionComponent<Props> = ({
               encStatus === 'INVALID_PASS' ? 'Invalid encryption key' : 'Encryption key to encrypt or decrypt text'
             }
             type="password"
+            autoComplete="one-time-code"
             value={formik.values.pass}
             onChange={formik.handleChange}
             error={(formik.touched.pass && Boolean(formik.errors.pass)) || encStatus === 'INVALID_PASS'}
