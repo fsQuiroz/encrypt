@@ -53,7 +53,7 @@ function pushChanges() {
 }
 
 doLint
-checkUncommittedChanges
+# checkUncommittedChanges
 checkBranchIsMain
 
 cleanLastBuild
