@@ -23,18 +23,18 @@ function checkBranchIsMain() {
   fi
 }
 
-function updateVersion() {
-  node fsq/update.version.js --new-version="$1"
-  yarn version $1
+function cleanLastBuild() {
+    rm -rf app.zip
+    rm -rf dist
 }
 
-function buildAndDeploy() {
-  rm -rf app.zip
-  rm -rf dist
-  yarn build
+function build() {
+    yarn build
+}
 
+function deploy() {
   zip -r app.zip dist
-  scp app.zip fsquiroz:~/sn.zip
+  rsync -az --progress app.zip fsquiroz:~/sn.zip
   rm -rf app.zip
   rm -rf dist
 
@@ -56,8 +56,9 @@ doLint
 checkUncommittedChanges
 checkBranchIsMain
 
-updateVersion "$NEW_VER"
-buildAndDeploy
+cleanLastBuild
+build
+deploy
 
 commitChanges "$NEW_VER"
 pushChanges "$NEW_VER"
