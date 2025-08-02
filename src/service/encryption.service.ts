@@ -31,7 +31,7 @@ export const decrypt: (note: string, pass: string) => string | null = (note: str
     const pkgTmp = JSON.parse(atob(note));
     pkg.encrypted = pkgTmp.encrypted;
     pkg.iv = pkgTmp.iv;
-  } catch (e) {
+  } catch {
     return null;
   }
 

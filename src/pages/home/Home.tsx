@@ -58,7 +58,7 @@ const Home: FunctionComponent<Props> = ({
         </Alert>
       </Snackbar>
       <Grid component="form" onSubmit={formik.handleSubmit} container spacing={2} ref={formRef}>
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <Typography variant="h3" align="center">
             Secure Notes
           </Typography>
@@ -66,7 +66,7 @@ const Home: FunctionComponent<Props> = ({
             by fsQuiroz.com | v{appVersion}
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <TextField
             name="note"
             label="Text"
@@ -84,9 +84,11 @@ const Home: FunctionComponent<Props> = ({
             maxRows={10}
             fullWidth
             focused={encStatus === 'CLEAN' ? undefined : encStatus === 'SUCCESS'}
-            InputProps={{
-              style: {
-                color: 'white',
+            slotProps={{
+              input: {
+                style: {
+                  color: 'white',
+                },
               },
             }}
             sx={
@@ -108,7 +110,7 @@ const Home: FunctionComponent<Props> = ({
             }
           />
         </Grid>
-        <Grid item xs={12} sx={{ mb: 2 }}>
+        <Grid size={{ xs: 12 }} sx={{ mb: 2 }}>
           <TextField
             name="pass"
             label="Key"
@@ -123,9 +125,11 @@ const Home: FunctionComponent<Props> = ({
             error={(formik.touched.pass && Boolean(formik.errors.pass)) || encStatus === 'INVALID_PASS'}
             autoFocus={encryptedQueryParamPresent}
             fullWidth
-            InputProps={{
-              style: {
-                color: 'white',
+            slotProps={{
+              input: {
+                style: {
+                  color: 'white',
+                },
               },
             }}
             sx={{
@@ -143,22 +147,22 @@ const Home: FunctionComponent<Props> = ({
             }}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={{ xs: 6 }}>
           <Stack direction="row" justifyContent="end">
             <EncryptButton disabled={!formik.isValid || !formik.dirty} onClick={handleEncrypt} />
           </Stack>
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={{ xs: 6 }}>
           <Stack direction="row" justifyContent="start">
             <DecryptButton disabled={!formik.isValid || !formik.dirty} onClick={handleDecrypt} />
           </Stack>
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={{ xs: 6 }}>
           <Stack direction="row" justifyContent="end">
             <CopyButton onClick={handleCopy} copied={copied} disabled={!formik.values.note} />
           </Stack>
         </Grid>
-        <Grid item xs={6}>
+        <Grid size={{ xs: 6 }}>
           <Stack direction="row" justifyContent="start">
             <ShareButton onClick={handleShare} shared={shared} disabled={!encrypted || !formik.values.note} />
           </Stack>
