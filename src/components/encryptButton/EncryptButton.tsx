@@ -1,4 +1,4 @@
-import { FunctionComponent, HTMLAttributes } from 'react';
+import type { FunctionComponent, HTMLAttributes } from 'react';
 import KeyIcon from '@mui/icons-material/Key';
 import { Button } from '@mui/material';
 

@@ -1,8 +1,8 @@
-import { FunctionComponent, SyntheticEvent, useEffect, useRef, useState } from 'react';
+import { type FunctionComponent, type SyntheticEvent, useEffect, useRef, useState } from 'react';
 import Home from './Home.tsx';
 import * as yup from 'yup';
-import { FormikProps, useFormik } from 'formik';
-import { EncryptForm } from '../../model/form/EncryptForm.ts';
+import { type FormikProps, useFormik } from 'formik';
+import type { EncryptForm } from '../../model/form/EncryptForm.ts';
 import * as EncryptionService from '../../service/encryption.service.ts';
 import * as CopyService from '../../service/copy.service';
 import { useQueryParams } from '../../service/hooks/useQueryParams.ts';

@@ -1,11 +1,11 @@
-import { FunctionComponent, HTMLAttributes, MutableRefObject, SyntheticEvent } from 'react';
+import type { FunctionComponent, HTMLAttributes, RefObject, SyntheticEvent } from 'react';
 import { Alert, Container, Grid, Snackbar, Stack, TextField, Typography } from '@mui/material';
 import EncryptButton from '../../components/encryptButton/EncryptButton.tsx';
 import DecryptButton from '../../components/decryptButton/DecryptButton.tsx';
 import CopyButton from '../../components/copyButton/CopyButton.tsx';
 import ShareButton from '../../components/shareButton/ShareButton.tsx';
-import { FormikProps } from 'formik';
-import { EncryptForm } from '../../model/form/EncryptForm.ts';
+import type { FormikProps } from 'formik';
+import type { EncryptForm } from '../../model/form/EncryptForm.ts';
 import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
 
 interface Props extends HTMLAttributes<unknown> {
@@ -16,7 +16,7 @@ interface Props extends HTMLAttributes<unknown> {
   shared: boolean;
   encryptedQueryParamPresent: boolean;
   alertMessage: string | null;
-  formRef: MutableRefObject<HTMLFormElement | null>;
+  formRef: RefObject<HTMLFormElement | null>;
   formik: FormikProps<EncryptForm>;
   handleEncrypt: () => void;
   handleDecrypt: () => void;

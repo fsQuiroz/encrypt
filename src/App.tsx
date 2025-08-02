@@ -1,5 +1,5 @@
 import './App.css';
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 import HomeContainer from './pages/home/HomeContainer.tsx';
 import { BrowserRouter } from 'react-router-dom';
 
