@@ -1,27 +1,62 @@
-# React + TypeScript + Vite
+# Encrypt-RJS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A secure text encryption and sharing web application built with React, TypeScript, and Vite. Encrypt sensitive text with a password and share it safely through generated links.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Client-side Encryption**: AES encryption with SHA256 key derivation using crypto-js
+- **Secure Sharing**: Generate shareable links with encrypted content
+- **Password Protection**: Decrypt content only with the correct password
+- **Modern UI**: Material-UI dark theme with responsive design
+- **Type Safety**: Full TypeScript implementation with strict type checking
 
-## Expanding the ESLint configuration
+## Quick Start
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+# Install dependencies
+yarn install
 
-- Configure the top-level `parserOptions` property like this:
+# Start development server
+yarn dev
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+# Build for production
+yarn build
+
+# Preview production build
+yarn preview
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Development
+
+### Prerequisites
+- Node.js 18+
+- Yarn package manager
+
+### Scripts
+- `yarn dev` - Start development server with hot reload
+- `yarn build` - TypeScript compilation + production build
+- `yarn lint` - Run ESLint with strict rules
+- `yarn preview` - Preview production build
+
+### Tech Stack
+- **Frontend**: React 19, TypeScript, Vite
+- **UI**: Material-UI (MUI) with Emotion styling
+- **Forms**: Formik with Yup validation
+- **Encryption**: crypto-js (AES-256)
+- **Routing**: React Router DOM
+
+## Security
+
+- All encryption/decryption happens client-side
+- Passwords never leave the browser
+- Uses industry-standard AES encryption with random initialization vectors
+- No server-side storage of sensitive data
+
+## Deployment
+
+The project includes an automated deployment script (`deploy.sh`) that:
+- Validates clean git state on main branch
+- Runs linting and builds
+- Creates deployment package
+- Deploys to production server
+- Tags releases in git
